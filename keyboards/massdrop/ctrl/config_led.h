@@ -30,8 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //Count of LED bodies
 #define ISSI3733_LED_COUNT 119
 
-#define LED_GCR_MAX                 165         //Max GCR value (0 - 255) WARNING: Raising this value may overload the LED drivers and USB bus
-#define LED_GCR_STEP                10          //GCR increment/decrement value
+#define LED_GCR_MAX                 150         //Max GCR value (0 - 255) WARNING: Raising this value may overload the LED drivers and USB bus
+#define LED_GCR_STEP                15          //GCR increment/decrement value
 
 #ifdef USE_MASSDROP_CONFIGURATOR
 #define ANIMATION_SPEED_STEP        1
@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //swr: Matrix wiring SW Red row (1-12)
 //swg: Matrix wiring SW Green row (1-12)
 //swb: Matrix wiring SW Blue row (1-12)
-//scan: Associated key matrix scancode (set 255 if none or 254 for LED to turn off in alternating mode)
+//scan: Associated key scancode if any
 //Note: Origin 0,0 may be located anywhere as the software will do the final layout
 #define ISSI3733_LED_MAP { \
  { .id = 1, .x = 0, .y = 0, .adr = { .drv = 2, .cs = 2, .swr = 2, .swg = 1, .swb = 3 }, .scan = 0 }, \
@@ -148,38 +148,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  { .id = 85, .x = 11.625, .y = -4.125, .adr = { .drv = 1, .cs = 12, .swr = 8, .swg = 7, .swb = 9 }, .scan = 84 }, \
  { .id = 86, .x = 12.375, .y = -4.125, .adr = { .drv = 1, .cs = 12, .swr = 5, .swg = 4, .swb = 6 }, .scan = 85 }, \
  { .id = 87, .x = 13.125, .y = -4.125, .adr = { .drv = 1, .cs = 11, .swr = 5, .swg = 4, .swb = 6 }, .scan = 86 }, \
- { .id = 88, .x = 13.433, .y = -4.43, .adr = { .drv = 1, .cs = 11, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 89, .x = 12.285, .y = -4.535, .adr = { .drv = 1, .cs = 12, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 90, .x = 11.14, .y = -4.535, .adr = { .drv = 1, .cs = 13, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 91, .x = 9.995, .y = -4.535, .adr = { .drv = 1, .cs = 14, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 92, .x = 8.85, .y = -4.535, .adr = { .drv = 1, .cs = 15, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 93, .x = 7.705, .y = -4.535, .adr = { .drv = 1, .cs = 16, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 94, .x = 6.56, .y = -4.535, .adr = { .drv = 2, .cs = 9, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 95, .x = 5.415, .y = -4.535, .adr = { .drv = 2, .cs = 10, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 96, .x = 4.27, .y = -4.535, .adr = { .drv = 2, .cs = 11, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 97, .x = 3.125, .y = -4.535, .adr = { .drv = 2, .cs = 12, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 98, .x = 1.98, .y = -4.535, .adr = { .drv = 2, .cs = 13, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 99, .x = 0.835, .y = -4.535, .adr = { .drv = 2, .cs = 14, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 100, .x = -0.307, .y = -4.43, .adr = { .drv = 2, .cs = 15, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 101, .x = -0.41, .y = -3.245, .adr = { .drv = 2, .cs = 15, .swr = 11, .swg = 10, .swb = 12 }, .scan = 254 }, \
- { .id = 102, .x = -0.41, .y = -2.06, .adr = { .drv = 2, .cs = 15, .swr = 5, .swg = 4, .swb = 6 }, .scan = 255 }, \
- { .id = 103, .x = -0.41, .y = -0.875, .adr = { .drv = 2, .cs = 15, .swr = 8, .swg = 7, .swb = 9 }, .scan = 254 }, \
- { .id = 104, .x = -0.308, .y = 0.31, .adr = { .drv = 2, .cs = 1, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 105, .x = 0.835, .y = 0.415, .adr = { .drv = 2, .cs = 3, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 106, .x = 1.98, .y = 0.415, .adr = { .drv = 2, .cs = 4, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 107, .x = 3.125, .y = 0.415, .adr = { .drv = 2, .cs = 5, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 108, .x = 4.27, .y = 0.415, .adr = { .drv = 2, .cs = 7, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 109, .x = 5.415, .y = 0.415, .adr = { .drv = 2, .cs = 8, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 110, .x = 6.56, .y = 0.415, .adr = { .drv = 1, .cs = 1, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 111, .x = 7.705, .y = 0.415, .adr = { .drv = 1, .cs = 2, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 112, .x = 8.85, .y = 0.415, .adr = { .drv = 1, .cs = 3, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 113, .x = 9.995, .y = 0.415, .adr = { .drv = 1, .cs = 5, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 114, .x = 11.14, .y = 0.415, .adr = { .drv = 1, .cs = 6, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 115, .x = 12.285, .y = 0.415, .adr = { .drv = 1, .cs = 8, .swr = 2, .swg = 1, .swb = 3 }, .scan = 254 }, \
- { .id = 116, .x = 13.432, .y = 0.31, .adr = { .drv = 1, .cs = 10, .swr = 2, .swg = 1, .swb = 3 }, .scan = 255 }, \
- { .id = 117, .x = 13.535, .y = -0.875, .adr = { .drv = 1, .cs = 10, .swr = 8, .swg = 7, .swb = 9 }, .scan = 254 }, \
- { .id = 118, .x = 13.535, .y = -2.06, .adr = { .drv = 1, .cs = 10, .swr = 11, .swg = 10, .swb = 12 }, .scan = 255 }, \
- { .id = 119, .x = 13.535, .y = -3.245, .adr = { .drv = 1, .cs = 10, .swr = 5, .swg = 4, .swb = 6 }, .scan = 254 }, \
+ { .id = 88, .x = 13.433, .y = -4.43, .adr = { .drv = 1, .cs = 11, .swr = 2, .swg = 1, .swb = 3 }, .scan = 87 }, \
+ { .id = 89, .x = 12.285, .y = -4.535, .adr = { .drv = 1, .cs = 12, .swr = 2, .swg = 1, .swb = 3 }, .scan = 88 }, \
+ { .id = 90, .x = 11.14, .y = -4.535, .adr = { .drv = 1, .cs = 13, .swr = 2, .swg = 1, .swb = 3 }, .scan = 89 }, \
+ { .id = 91, .x = 9.995, .y = -4.535, .adr = { .drv = 1, .cs = 14, .swr = 2, .swg = 1, .swb = 3 }, .scan = 90 }, \
+ { .id = 92, .x = 8.85, .y = -4.535, .adr = { .drv = 1, .cs = 15, .swr = 2, .swg = 1, .swb = 3 }, .scan = 91 }, \
+ { .id = 93, .x = 7.705, .y = -4.535, .adr = { .drv = 1, .cs = 16, .swr = 2, .swg = 1, .swb = 3 }, .scan = 92 }, \
+ { .id = 94, .x = 6.56, .y = -4.535, .adr = { .drv = 2, .cs = 9, .swr = 2, .swg = 1, .swb = 3 }, .scan = 93 }, \
+ { .id = 95, .x = 5.415, .y = -4.535, .adr = { .drv = 2, .cs = 10, .swr = 2, .swg = 1, .swb = 3 }, .scan = 94 }, \
+ { .id = 96, .x = 4.27, .y = -4.535, .adr = { .drv = 2, .cs = 11, .swr = 2, .swg = 1, .swb = 3 }, .scan = 95 }, \
+ { .id = 97, .x = 3.125, .y = -4.535, .adr = { .drv = 2, .cs = 12, .swr = 2, .swg = 1, .swb = 3 }, .scan = 96 }, \
+ { .id = 98, .x = 1.98, .y = -4.535, .adr = { .drv = 2, .cs = 13, .swr = 2, .swg = 1, .swb = 3 }, .scan = 97 }, \
+ { .id = 99, .x = 0.835, .y = -4.535, .adr = { .drv = 2, .cs = 14, .swr = 2, .swg = 1, .swb = 3 }, .scan = 98 }, \
+ { .id = 100, .x = -0.307, .y = -4.43, .adr = { .drv = 2, .cs = 15, .swr = 2, .swg = 1, .swb = 3 }, .scan = 99 }, \
+ { .id = 101, .x = -0.41, .y = -3.245, .adr = { .drv = 2, .cs = 15, .swr = 11, .swg = 10, .swb = 12 }, .scan = 100 }, \
+ { .id = 102, .x = -0.41, .y = -2.06, .adr = { .drv = 2, .cs = 15, .swr = 5, .swg = 4, .swb = 6 }, .scan = 101 }, \
+ { .id = 103, .x = -0.41, .y = -0.875, .adr = { .drv = 2, .cs = 15, .swr = 8, .swg = 7, .swb = 9 }, .scan = 102 }, \
+ { .id = 104, .x = -0.308, .y = 0.31, .adr = { .drv = 2, .cs = 1, .swr = 2, .swg = 1, .swb = 3 }, .scan = 103 }, \
+ { .id = 105, .x = 0.835, .y = 0.415, .adr = { .drv = 2, .cs = 3, .swr = 2, .swg = 1, .swb = 3 }, .scan = 104 }, \
+ { .id = 106, .x = 1.98, .y = 0.415, .adr = { .drv = 2, .cs = 4, .swr = 2, .swg = 1, .swb = 3 }, .scan = 105 }, \
+ { .id = 107, .x = 3.125, .y = 0.415, .adr = { .drv = 2, .cs = 5, .swr = 2, .swg = 1, .swb = 3 }, .scan = 106 }, \
+ { .id = 108, .x = 4.27, .y = 0.415, .adr = { .drv = 2, .cs = 7, .swr = 2, .swg = 1, .swb = 3 }, .scan = 107 }, \
+ { .id = 109, .x = 5.415, .y = 0.415, .adr = { .drv = 2, .cs = 8, .swr = 2, .swg = 1, .swb = 3 }, .scan = 108 }, \
+ { .id = 110, .x = 6.56, .y = 0.415, .adr = { .drv = 1, .cs = 1, .swr = 2, .swg = 1, .swb = 3 }, .scan = 109 }, \
+ { .id = 111, .x = 7.705, .y = 0.415, .adr = { .drv = 1, .cs = 2, .swr = 2, .swg = 1, .swb = 3 }, .scan = 110 }, \
+ { .id = 112, .x = 8.85, .y = 0.415, .adr = { .drv = 1, .cs = 3, .swr = 2, .swg = 1, .swb = 3 }, .scan = 111 }, \
+ { .id = 113, .x = 9.995, .y = 0.415, .adr = { .drv = 1, .cs = 5, .swr = 2, .swg = 1, .swb = 3 }, .scan = 112 }, \
+ { .id = 114, .x = 11.14, .y = 0.415, .adr = { .drv = 1, .cs = 6, .swr = 2, .swg = 1, .swb = 3 }, .scan = 113 }, \
+ { .id = 115, .x = 12.285, .y = 0.415, .adr = { .drv = 1, .cs = 8, .swr = 2, .swg = 1, .swb = 3 }, .scan = 114 }, \
+ { .id = 116, .x = 13.432, .y = 0.31, .adr = { .drv = 1, .cs = 10, .swr = 2, .swg = 1, .swb = 3 }, .scan = 115 }, \
+ { .id = 117, .x = 13.535, .y = -0.875, .adr = { .drv = 1, .cs = 10, .swr = 8, .swg = 7, .swb = 9 }, .scan = 116 }, \
+ { .id = 118, .x = 13.535, .y = -2.06, .adr = { .drv = 1, .cs = 10, .swr = 11, .swg = 10, .swb = 12 }, .scan = 117 }, \
+ { .id = 119, .x = 13.535, .y = -3.245, .adr = { .drv = 1, .cs = 10, .swr = 5, .swg = 4, .swb = 6 }, .scan = 118 }, \
 };
 
 #define USB_LED_INDICATOR_ENABLE    //Comment out to disable indicator functionality
@@ -189,4 +189,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define USB_LED_SCROLL_LOCK_SCANCODE    54
     #define USB_LED_COMPOSE_SCANCODE        255
     #define USB_LED_KANA_SCANCODE           255
+    #define USB_LED_6KRO_SCANCODE           103
+    #define USB_LED_NO_GUI_L_SCANCODE       41
+    #define USB_LED_NO_GUI_R_SCANCODE       255
 #endif //USB_LED_INDICATOR_ENABLE

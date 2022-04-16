@@ -375,6 +375,31 @@ void md_rgb_matrix_indicators_advanced(uint8_t led_min, uint8_t led_max) {
             }
         }
     }
+    if (rgb_matrix_config.enable) {
+        for (uint8_t i = led_min; i < led_max; i++) {
+#    if USB_LED_6KRO_SCANCODE != 255
+            if (led_map[i].scan == USB_LED_6KRO_SCANCODE && !keymap_config.nkro) {
+                led_buffer[i].r = 255 - led_buffer[i].r;
+                led_buffer[i].g = 255 - led_buffer[i].g;
+                led_buffer[i].b = 255 - led_buffer[i].b;
+            }
+#    endif  // 6KRO
+#    if USB_LED_NO_GUI_L_SCANCODE != 255
+            if (led_map[i].scan == USB_LED_NO_GUI_L_SCANCODE && keymap_config.no_gui) {
+                led_buffer[i].r = 255 - led_buffer[i].r;
+                led_buffer[i].g = 255 - led_buffer[i].g;
+                led_buffer[i].b = 255 - led_buffer[i].b;
+            }
+#    endif  // NO_GUI_L
+#    if USB_LED_NO_GUI_R_SCANCODE != 255
+            if (led_map[i].scan == USB_LED_NO_GUI_R_SCANCODE && keymap_config.no_gui) {
+                led_buffer[i].r = 255 - led_buffer[i].r;
+                led_buffer[i].g = 255 - led_buffer[i].g;
+                led_buffer[i].b = 255 - led_buffer[i].b;
+            }
+#    endif  // NO_GUI_L
+        }
+    }
 }
 
 const rgb_matrix_driver_t rgb_matrix_driver = {.init = init, .flush = flush, .set_color = led_set_one, .set_color_all = led_set_all};
