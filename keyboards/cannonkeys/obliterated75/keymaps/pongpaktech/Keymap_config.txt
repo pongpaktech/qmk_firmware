@@ -1,0 +1,11 @@
+swap_control_capslock : 1;
+capslock_to_control : 1;
+swap_lalt_lgui : 1;
+swap_ralt_rgui : 1;
+no_gui : 1;
+swap_grave_esc : 1;
+swap_backslash_backspace : 1;
+nkro : 1;
+swap_lctl_lgui : 1;
+swap_rctl_rgui : 1;
+oneshot_disable : 1;
