@@ -21,6 +21,3 @@
 [submodule "lib/pico-sdk"]
 	path = lib/pico-sdk
 	url = https://github.com/qmk/pico-sdk.git
-[submodule "keyboards/nullbitsco/snap"]
-	path = keyboards/nullbitsco/snap
-	url = https://github.com/pongpaktech/snap
