@@ -25,6 +25,3 @@
 	path = lib/lvgl
 	url = https://github.com/qmk/lvgl.git
 	branch = release/v8.2
-[submodule "keyboards/nullbitsco/snap"]
-	path = keyboards/nullbitsco/snap
-	url = https://github.com/pongpaktech/snap.git
